@@ -71,9 +71,16 @@ export default function Scanner() {
       setStatus('processing');
       setMessage('Acquiring secure GPS location...');
       
-      // Extract anchorId from URL (Format: https://.../scan?anchorId=UUID)
-      const urlObj = new URL(url);
-      const anchorId = urlObj.searchParams.get('anchorId');
+      // Extract anchorId. It might be a full URL (https://.../scan?anchorId=UUID) 
+      // or it might just be the raw UUID string from the generator.
+      let anchorId;
+      try {
+        const urlObj = new URL(url);
+        anchorId = urlObj.searchParams.get('anchorId');
+      } catch (e) {
+        // If it's not a valid URL, assume the scanned text is the raw anchorId
+        anchorId = url;
+      }
       
       if (!anchorId) throw new Error('Invalid QR Code. No anchor ID found.');
 
