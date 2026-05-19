@@ -88,8 +88,8 @@ export default function Scanner() {
       const position = await new Promise((resolve, reject) => {
         navigator.geolocation.getCurrentPosition(resolve, reject, {
           enableHighAccuracy: true,
-          timeout: 10000,
-          maximumAge: 0
+          timeout: 30000, // Increased timeout to 30 seconds for slower GPS locks
+          maximumAge: 5000 // Allow up to 5 seconds of cached location to speed up resolution
         });
       });
 
