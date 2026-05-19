@@ -5,7 +5,7 @@ import { supabase } from '../supabaseClient';
 import confetti from 'canvas-confetti';
 import { ArrowLeft, MapPin, XCircle, Loader2 } from 'lucide-react';
 
-const GEOFENCE_RADIUS_METERS = 100;
+const GEOFENCE_RADIUS_METERS = 1000;
 
 // Haversine formula
 function getDistanceFromLatLonInMeters(lat1, lon1, lat2, lon2) {
